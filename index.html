@@ -1,149 +1,360 @@
-
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20fill%3D%22%230a0a09%22%2F%3E%3Cg%20stroke%3D%22%23fffc00%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M14%2C38%20L14%2C14%20L38%2C14%22%2F%3E%3Cpath%20d%3D%22M82%2C14%20L106%2C14%20L106%2C38%22%2F%3E%3Cpath%20d%3D%22M14%2C82%20L14%2C106%20L38%2C106%22%2F%3E%3Cpath%20d%3D%22M106%2C82%20L106%2C106%20L82%2C106%22%2F%3E%3Cline%20x1%3D%2252%22%20y1%3D%2260%22%20x2%3D%2268%22%20y2%3D%2260%22%20stroke-width%3D%228%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2260%22%20r%3D%2210%22%20fill%3D%22%23fffc00%22%20stroke%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2276%22%20cy%3D%2260%22%20r%3D%2210%22%20fill%3D%22%23fffc00%22%20stroke%3D%22none%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
-<title>Tagit — install</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: #0a0a09;
-    color: #fff;
-    font: 16px/1.55 -apple-system, "Segoe UI", system-ui, sans-serif;
-    display: grid;
-    place-items: center;
-    padding: 40px 24px;
-  }
-  .stack { display: grid; justify-items: center; gap: 24px; max-width: 520px; }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  h1 {
-    margin: 0;
-    font-size: 44px;
-    letter-spacing: -0.05em;
-    color: #fffc00;
-    font-weight: 900;
-    line-height: 1;
-  }
-  .sub { margin: 0; color: #8c8c84; text-align: center; }
-  .tile {
-    background: #fffc00;
-    border-radius: 30px;
-    padding: 26px;
-    display: grid;
-    justify-items: center;
-    gap: 14px;
-  }
-  .qr { width: 300px; height: 300px; display: grid; place-items: center; }
-  .qr canvas, .qr img { width: 300px !important; height: 300px !important; display: block; }
-  .tile .cap { color: #000; font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
-  .meta {
-    display: flex;
-    gap: 8px 18px;
-    flex-wrap: wrap;
-    justify-content: center;
-    font: 12px/1.5 ui-monospace, Consolas, monospace;
-    color: #5d5d57;
-  }
-  ol { margin: 0; padding-left: 22px; color: #8c8c84; font-size: 14px; }
-  ol li { margin-bottom: 6px; }
-  ol b { color: #fff; font-weight: 600; }
-  .warn {
-    border-left: 2px solid #ff6b2c;
-    padding-left: 14px;
-    color: #8c8c84;
-    font-size: 13.5px;
-  }
-  a { color: #fffc00; word-break: break-all; font-size: 12px; font-family: ui-monospace, Consolas, monospace; }
-</style>
-</head>
-<body>
-<div class="stack">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get Tagit</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20fill%3D%22%230a0a09%22%2F%3E%3Cg%20stroke%3D%22%23fffc00%22%20stroke-width%3D%2210%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M14%2C38%20L14%2C14%20L38%2C14%22%2F%3E%3Cpath%20d%3D%22M82%2C14%20L106%2C14%20L106%2C38%22%2F%3E%3Cpath%20d%3D%22M14%2C82%20L14%2C106%20L38%2C106%22%2F%3E%3Cpath%20d%3D%22M106%2C82%20L106%2C106%20L82%2C106%22%2F%3E%3Cline%20x1%3D%2252%22%20y1%3D%2260%22%20x2%3D%2268%22%20y2%3D%2260%22%20stroke-width%3D%228%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2260%22%20r%3D%2210%22%20fill%3D%22%23fffc00%22%20stroke%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2276%22%20cy%3D%2260%22%20r%3D%2210%22%20fill%3D%22%23fffc00%22%20stroke%3D%22none%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+    />
+    <meta
+      name="description"
+      content="Download Tagit — scan-first social for real-world events."
+    />
 
-  <div class="brand">
-    <svg width="52" height="52" viewBox="0 0 120 120" aria-hidden="true">
-      <g stroke="#fffc00" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
-        <path d="M8,34 L8,8 L34,8"/>
-        <path d="M86,8 L112,8 L112,34"/>
-        <path d="M8,86 L8,112 L34,112"/>
-        <path d="M112,86 L112,112 L86,112"/>
-        <line x1="52" y1="60" x2="68" y2="60" stroke-width="7"/>
-        <circle cx="44" cy="60" r="9" fill="#fffc00" stroke="none"/>
-        <circle cx="76" cy="60" r="9" fill="#fffc00" stroke="none"/>
-      </g>
-    </svg>
-    <h1>TAGIT</h1>
-  </div>
-  <p class="sub">Point an Android phone's camera at this code to install the app.</p>
+    <!-- Social preview, so a link dropped in a group chat looks like something. -->
+    <meta property="og:title" content="Get Tagit" />
+    <meta
+      property="og:description"
+      content="Scan someone once. Remember them forever."
+    />
+    <meta property="og:type" content="website" />
 
-  <div class="tile">
-    <div class="qr" id="qr"></div>
-    <div class="cap">Scan to install</div>
-  </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
 
-  <div class="meta">
-    <span>v0.2.0</span>
-    <span>SDK 57</span>
-    <span>Android APK</span>
-    <span>OTA enabled</span>
-  </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ground: "#0a0a09",
+              surface: "#141412",
+              edge: "#2a2a26",
+              dim: "#8c8c84",
+              faint: "#5d5d57",
+              snap: "#fffc00",
+              flame: "#ff6b2c",
+            },
+            fontFamily: {
+              display: ['"Bricolage Grotesque"', "Arial", "sans-serif"],
+              body: ['"IBM Plex Sans"', "system-ui", "sans-serif"],
+              mono: ['"IBM Plex Mono"', "Consolas", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
 
-  <ol>
-    <li>Scan with the phone's normal <b>Camera app</b> — it opens the download.</li>
-    <li>Tap the downloaded file to install.</li>
-    <li>Android will say the app is from an <b>unknown source</b> — allow it. That's
-      normal for any APK outside the Play Store.</li>
-    <li>Open <b>Tagit</b>. It should land straight on the camera.</li>
-  </ol>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background: #0a0a09;
+        color: #fff;
+        font-family: '"IBM Plex Sans"', system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+      .stack {
+        font-family: "Bricolage Grotesque", Arial, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 0.82;
+      }
+      .ripple {
+        animation: ripple 2.4s ease-out infinite;
+      }
+      .ripple:nth-child(2) {
+        animation-delay: 1.2s;
+      }
+      @keyframes ripple {
+        0% {
+          transform: scale(0.4);
+          opacity: 0.85;
+        }
+        100% {
+          transform: scale(1.85);
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ripple {
+          animation: none;
+          opacity: 0.25;
+        }
+      }
+      ::selection {
+        background: #fffc00;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="mx-auto grid max-w-3xl gap-12 px-5 pb-24 pt-14 sm:px-8">
+      <!-- ---------- header ---------- -->
+      <header class="grid gap-5">
+        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
+          Android · free · v0.2
+        </p>
+        <div class="flex items-center gap-4">
+          <svg
+            width="72"
+            height="72"
+            viewBox="0 0 120 120"
+            aria-hidden="true"
+            style="flex: none"
+          >
+            <g
+              stroke="#fffc00"
+              stroke-width="9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              fill="none"
+            >
+              <path d="M8,34 L8,8 L34,8" />
+              <path d="M86,8 L112,8 L112,34" />
+              <path d="M8,86 L8,112 L34,112" />
+              <path d="M112,86 L112,112 L86,112" />
+              <line x1="52" y1="60" x2="68" y2="60" stroke-width="7" />
+              <circle cx="44" cy="60" r="9" fill="#fffc00" stroke="none" />
+              <circle cx="76" cy="60" r="9" fill="#fffc00" stroke="none" />
+            </g>
+          </svg>
+          <h1 class="stack text-snap text-[19vw] sm:text-[104px]">Tagit</h1>
+        </div>
+        <p
+          class="font-display max-w-[24ch] text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] sm:max-w-none sm:text-[33px]"
+        >
+          Scan someone once.<br />
+          <span class="text-snap">Remember them forever.</span>
+        </p>
+        <p class="max-w-[58ch] text-dim">
+          Meet someone at a party, scan their code, and they're saved with the
+          night attached — who they were, where you met, one tap to add them on
+          Snap.
+        </p>
+      </header>
 
-  <p class="warn">
-    Android only. iPhones can't install an APK — that needs Apple's $99/yr
-    Developer Program, so iPhone users still go through Expo Go for now.
-  </p>
+      <!-- ---------- the download ---------- -->
+      <section
+        class="grid items-center gap-8 sm:grid-cols-[236px_minmax(0,1fr)]"
+      >
+        <div class="mx-auto grid gap-4 rounded-[26px] bg-snap p-6" id="qr-tile">
+          <div
+            class="grid h-[188px] w-[188px] place-items-center"
+            id="qr"
+          ></div>
+          <p class="text-center text-[13px] font-extrabold text-black">
+            Scan with your phone
+          </p>
+        </div>
 
-  <a id="raw" href="#"></a>
+        <div class="grid gap-4">
+          <a
+            id="dl"
+            href="#"
+            class="grid h-14 place-items-center rounded-full bg-snap text-[17px] font-extrabold text-black transition hover:brightness-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-snap/40"
+          >
+            Download the app
+          </a>
+          <p class="text-[14px] text-dim">
+            Tap the button on an Android phone, or scan the code from a computer
+            screen. About 60 MB.
+          </p>
+          <p id="version" class="font-mono text-[11.5px] text-faint"></p>
+        </div>
+      </section>
 
-</div>
+      <!-- ---------- what's in it ---------- -->
+      <section class="grid gap-4">
+        <h2 class="font-display text-[24px] font-extrabold tracking-[-0.03em]">
+          What it does
+        </h2>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div
+            class="grid content-start gap-1.5 rounded-2xl border border-edge bg-surface p-5"
+          >
+            <b class="text-[16px] font-bold">Scan someone, add them on Snap</b>
+            <span class="text-[14.5px] text-dim">
+              Opens straight to the camera. One scan, one tap, and they're in
+              your Snapchat — nobody spells a username. One scan links you both.
+            </span>
+          </div>
+          <div
+            class="grid content-start gap-1.5 rounded-2xl border border-edge bg-surface p-5"
+          >
+            <b class="text-[16px] font-bold">It remembers the night</b>
+            <span class="text-[14.5px] text-dim">
+              Everyone you meet is saved with where and when. Run into them
+              again and it starts a streak.
+            </span>
+          </div>
+          <div
+            class="grid content-start gap-1.5 rounded-2xl border border-edge bg-surface p-5"
+          >
+            <b class="text-[16px] font-bold">Find something to go to</b>
+            <span class="text-[14.5px] text-dim">
+              A full-screen feed of concerts, parties and pop-ups. Host your own
+              in a few taps — public, or invite-only for your friends.
+            </span>
+          </div>
+          <div
+            class="grid content-start gap-1.5 rounded-2xl border border-edge bg-surface p-5"
+          >
+            <b class="text-[16px] font-bold">Rank you can't buy</b>
+            <span class="text-[14.5px] text-dim">
+              Points come only from scanning the code at a venue and meeting
+              real people. There is no way to earn them sitting at home.
+            </span>
+          </div>
+        </div>
+      </section>
 
-<script>
-  /**
-   * The current build. Replace this with the "Application Archive URL" from
-   * the EAS build page after every new build:
-   *   npx eas build:list --platform android --limit 1
-   *
-   * Kept as one constant on purpose — updating the download means editing this
-   * single line, not hunting through markup.
-   */
-  var APK_URL = 'https://expo.dev/artifacts/eas/TAMKWe729zIPTeewlXG5MC0KkdJXNcoDXJWeuJxz-OA.apk';
-  var VERSION = 'v0.2.0';
+      <!-- ---------- install steps ---------- -->
+      <section class="grid gap-4">
+        <h2 class="font-display text-[24px] font-extrabold tracking-[-0.03em]">
+          Installing it
+        </h2>
+        <ol class="grid gap-3">
+          <li
+            class="grid grid-cols-[30px_minmax(0,1fr)] gap-3 rounded-2xl border border-edge bg-surface p-4"
+          >
+            <span class="stack text-[22px] text-snap">1</span>
+            <p class="text-[15px] text-dim">
+              Tap
+              <strong class="font-semibold text-white">Download the app</strong
+              >. Your browser saves the file.
+            </p>
+          </li>
+          <li
+            class="grid grid-cols-[30px_minmax(0,1fr)] gap-3 rounded-2xl border border-edge bg-surface p-4"
+          >
+            <span class="stack text-[22px] text-snap">2</span>
+            <p class="text-[15px] text-dim">
+              Open it from your notifications or your Downloads folder.
+            </p>
+          </li>
+          <li
+            class="grid grid-cols-[30px_minmax(0,1fr)] gap-3 rounded-2xl border border-edge bg-surface p-4"
+          >
+            <span class="stack text-[22px] text-snap">3</span>
+            <p class="text-[15px] text-dim">
+              Android will warn you it's from an
+              <strong class="font-semibold text-white">unknown source</strong>.
+              That's normal for any app not from the Play Store — choose
+              <strong class="font-semibold text-white">Install anyway</strong>.
+            </p>
+          </li>
+          <li
+            class="grid grid-cols-[30px_minmax(0,1fr)] gap-3 rounded-2xl border border-edge bg-surface p-4"
+          >
+            <span class="stack text-[22px] text-snap">4</span>
+            <p class="text-[15px] text-dim">
+              Open Tagit and sign in with your phone number or email. That's so
+              your card follows you to a new phone —
+              <strong class="font-semibold text-white"
+                >sign in with the same one and everything comes back</strong
+              >.
+            </p>
+          </li>
+        </ol>
+      </section>
 
-  (function () {
-    var link = document.getElementById('dl');
-    link.href = APK_URL;
-    // Hints to the browser that this is a file to keep, not a page to render.
-    link.setAttribute('download', 'tagit-' + VERSION + '.apk');
+      <!-- ---------- honesty ---------- -->
+      <section class="grid gap-3">
+        <div class="rounded-2xl border-l-[3px] border-flame bg-surface/60 p-5">
+          <h3 class="text-[15.5px] font-bold text-flame">
+            iPhone isn't ready yet
+          </h3>
+          <p class="mt-2 text-[15px] text-dim">
+            Apple only allows app installs through the App Store, which needs a
+            paid developer account. It's coming — for now iPhone users can run
+            Tagit through the free
+            <strong class="font-semibold text-white">Expo Go</strong> app. Ask
+            and we'll send a link.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-edge p-5">
+          <h3 class="text-[15.5px] font-bold">Tap instead of scan</h3>
+          <p class="mt-2 text-[15px] text-dim">
+            If your phone does NFC, you can tap a sticker or wristband to check
+            in instead of aiming a camera in the dark. Two phones can't tap each
+            other — that isn't possible on any phone — so people are still
+            scanned with the camera.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-edge p-5">
+          <h3 class="text-[15.5px] font-bold">This is an early build</h3>
+          <p class="mt-2 text-[15px] text-dim">
+            Things will be rough and some features are still being wired up. It
+            won't post anything anywhere, and nothing is shared until someone
+            scans your code.
+          </p>
+        </div>
+      </section>
 
-    document.getElementById('version').textContent = VERSION + ' · Android 7.0 and up';
+      <p class="font-mono text-[11px] leading-[1.9] text-faint">
+        Tagit — scan-first social for real-world events.<br />
+        Android APK · built with React Native.
+      </p>
+    </main>
 
-  var host = document.getElementById('qr');
-  if (typeof QRCode !== 'undefined') {
-    new QRCode(host, {
-      text: APK_URL,
-      width: 300,
-      height: 300,
-      colorDark: '#000000',
-      colorLight: '#fffc00',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  } else {
-    host.textContent = 'QR library blocked — use the link below';
-    host.style.color = '#000';
-  }
-</script>
-</body>
+    <script>
+      /**
+       * The current build. Replace this with the "Application Archive URL" from
+       * the EAS build page after every new build:
+       *   npx eas build:list --platform android --limit 1
+       *
+       * Kept as one constant on purpose — updating the download means editing this
+       * single line, not hunting through markup.
+       */
+      var APK_URL =
+        "https://expo.dev/artifacts/eas/YdcvRj_ETYdP6fALccsDeZ_clfrVc7gtGUwNFTup94U.apk";
+      var VERSION = "v0.1.0";
+
+      (function () {
+        var link = document.getElementById("dl");
+        link.href = APK_URL;
+        // Hints to the browser that this is a file to keep, not a page to render.
+        link.setAttribute("download", "tagit-" + VERSION + ".apk");
+
+        document.getElementById("version").textContent =
+          VERSION + " · Android 7.0 and up";
+
+        var host = document.getElementById("qr");
+        if (typeof QRCode !== "undefined") {
+          new QRCode(host, {
+            text: APK_URL,
+            width: 188,
+            height: 188,
+            colorDark: "#000000",
+            colorLight: "#fffc00",
+            correctLevel: QRCode.CorrectLevel.M,
+          });
+        } else {
+          // Never leave a dead yellow square: say what to do instead.
+          host.textContent = "Use the download button";
+          host.className += " text-center text-[13px] font-bold text-black";
+        }
+
+        // An iPhone can't install an APK at all, so lead with that rather than
+        // letting someone download a file their phone will refuse to open.
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          link.textContent = "Android only — see below";
+          link.removeAttribute("href");
+          link.className =
+            "grid h-14 place-items-center rounded-full border border-edge text-[16px] font-bold text-dim";
+        }
+      })();
+    </script>
+  </body>
 </html>
